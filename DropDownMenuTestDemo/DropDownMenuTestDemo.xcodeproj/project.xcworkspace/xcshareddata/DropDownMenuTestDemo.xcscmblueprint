@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "CB85B2B54F2F7FA7CCB9EE44D61BE7DD0A48B84B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "EC89FBACF535F0981979E1D6BBC368840FB614F2" : 9223372036854775807,
+    "CB85B2B54F2F7FA7CCB9EE44D61BE7DD0A48B84B" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "460A3BC6-BFEE-452F-9626-26C180DE09E1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "EC89FBACF535F0981979E1D6BBC368840FB614F2" : "",
+    "CB85B2B54F2F7FA7CCB9EE44D61BE7DD0A48B84B" : "SwiftDropDownMenuTestDemo\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "DropDownMenuTestDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DropDownMenuTestDemo\/DropDownMenuTestDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/iOSJason\/SwiftDropDownMenuDemo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CB85B2B54F2F7FA7CCB9EE44D61BE7DD0A48B84B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/iOSJason\/AnimationTabBarItemSwiftDemo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EC89FBACF535F0981979E1D6BBC368840FB614F2"
+    }
+  ]
+}

@@ -91,7 +91,7 @@ class DOPIndexPath: NSObject {
 class DOPBackgroundCellView:UIView {
     
     override func draw(_ rect: CGRect) {
-        //Drawing code 
+        //Drawing code
         let context: CGContext = UIGraphicsGetCurrentContext()!
         //画一条底部线
         context.setStrokeColor(red: 219.0/255, green: 224.0/255, blue: 228.0/255, alpha: 1);//线条颜色
@@ -119,7 +119,7 @@ struct dataSourceFlags {
 
 //MARK:DOPDropDownMenu
 class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+    
     var structDataSourceFlags = dataSourceFlags()
     weak var delegate: DOPDropDownMenuDelegate?
     
@@ -219,7 +219,7 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
         self.bottomShadow = bottomShadow
     }
     
-
+    
     weak var dataSource: DOPDropDownMenuDataSource? {
         
         didSet {
@@ -291,14 +291,14 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
         }
     }
     
-    
+    //MARK:Methods
     func titleForRowAtIndexPath(indexPath: DOPIndexPath) -> String {
         return (dataSource?.menu(dopMenu: self, titleForRowAtIndexPath: indexPath))!
     }
     
     func reloadData() -> Void {
         self.animateBackGroundView(view: backGroundView, show: false) {
-            self.animateTableView(tableView: nil, show: false, complete: { 
+            self.animateTableView(tableView: nil, show: false, complete: {
                 isShow = false
                 let VC:UIViewController = self.dataSource as! UIViewController
                 self.dataSource = nil
@@ -310,7 +310,7 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
     func selectDefalutIndexPath() -> Void {
         self.selectIndexPath(indexPath: DOPIndexPath.indexPathWith(col: 1, row: 2))
     }
-
+    
     func selectIndexPath(indexPath: DOPIndexPath, triggerDelegate trigger: Bool) -> Void {
         if dataSource == nil || delegate == nil || !(delegate?.responds(to: #selector(DOPDropDownMenuDelegate.menu(_:didSelectRowAtIndexPath:))))! {
             return
@@ -368,17 +368,17 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
         
         for i in 0..<numOfMenu {
             if i != tapIndex {
-                self.animateIndicator(indicator: indicators[i], forward: false, complete: { 
-                    self.animateTitle(title: titles[i], show: false, complete: { 
+                self.animateIndicator(indicator: indicators[i], forward: false, complete: {
+                    self.animateTitle(title: titles[i], show: false, complete: {
                         
                     })
                 })
             }
         }
-     
+        
         if tapIndex == 0 && isShow {
             if (self.superview?.subviews.contains(self.leftTableView))! || (self.superview?.subviews.contains(self.rightTableView))! {
-                self.animateIdicator(indicator: indicators[currentSelectedMenudIndex], background: backGroundView, tableview: self.leftTableView, title: titles[currentSelectedMenudIndex], forward: false, complete: { 
+                self.animateIdicator(indicator: indicators[currentSelectedMenudIndex], background: backGroundView, tableview: self.leftTableView, title: titles[currentSelectedMenudIndex], forward: false, complete: {
                     isShow = false
                 })
             } else {
@@ -390,7 +390,7 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
             })
         } else if tapIndex == 0 && !isShow {
             currentSelectedMenudIndex = tapIndex
-//            self.collectionView?.reloadData()
+            //            self.collectionView?.reloadData()
             self.animateCollectionIdicator(indicator: indicators[currentSelectedMenudIndex], background: backGroundView, collectionView: self.collectionView!, title: titles[currentSelectedMenudIndex], forward: true, complete: {
                 currentSelectedMenudIndex = tapIndex
                 isShow = true
@@ -413,21 +413,21 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
             })
         } else if tapIndex != 0 && !isShow{
             currentSelectedMenudIndex = tapIndex
-
-                self.leftTableView.reloadData()
-                if (dataSource != nil) && structDataSourceFlags.numberOfItemsInRow != 0 {
-//                    self.rightTableView.reloadData()
-                }
-                self.animateIdicator(indicator: indicators[tapIndex], background: backGroundView, tableview: self.leftTableView, title: titles[tapIndex], forward: true, complete: {
-                    isShow = true
-                })
+            
+            self.leftTableView.reloadData()
+            if (dataSource != nil) && structDataSourceFlags.numberOfItemsInRow != 0 {
+                //                    self.rightTableView.reloadData()
+            }
+            self.animateIdicator(indicator: indicators[tapIndex], background: backGroundView, tableview: self.leftTableView, title: titles[tapIndex], forward: true, complete: {
+                isShow = true
+            })
         }
- 
+        
     }
     
     @objc fileprivate func backGroundTapped(paramSender: UITapGestureRecognizer) -> Void {
         if (self.superview?.subviews.contains(collectionView!))! {
-            self.animateCollectionIdicator(indicator: indicators[currentSelectedMenudIndex], background: backGroundView, collectionView: self.collectionView!, title: titles[currentSelectedMenudIndex], forward: false, complete: { 
+            self.animateCollectionIdicator(indicator: indicators[currentSelectedMenudIndex], background: backGroundView, collectionView: self.collectionView!, title: titles[currentSelectedMenudIndex], forward: false, complete: {
                 isShow = false
             })
         } else {
@@ -459,7 +459,7 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
         layer.path = path.cgPath
         layer.lineWidth = 0.8
         layer.fillColor = color.cgColor
-
+        
         let bound = layer.path?.copy(strokingWithWidth: layer.lineWidth, lineCap: CGLineCap.butt, lineJoin: CGLineJoin.miter, miterLimit: layer.miterLimit)
         layer.bounds = (bound?.boundingBoxOfPath)!
         layer.position = point
@@ -477,9 +477,9 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
         layer.lineWidth = 1
         layer.strokeColor = color.cgColor
         
-
+        
         let bound = layer.path?.copy(strokingWithWidth: layer.lineWidth, lineCap: CGLineCap.butt, lineJoin: CGLineJoin.miter, miterLimit: layer.miterLimit)
-
+        
         layer.bounds = (bound?.boundingBoxOfPath)!
         layer.position = point
         return layer
@@ -510,7 +510,7 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
         return CGSize(width: CGFloat(ceilf(Float(size.width)) + 2), height: size.height)
     }
     
-    //MARK:- animation method 
+    //MARK:- animation method
     fileprivate func animateIndicator(indicator: CAShapeLayer, forward:Bool, complete:()->()) -> Void {
         CATransaction.begin()
         CATransaction.setAnimationDuration(0.25)
@@ -542,11 +542,11 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
         if show {
             self.superview?.addSubview(view)
             view.superview?.addSubview(self)
-            UIView.animate(withDuration: 0.2, animations: { 
+            UIView.animate(withDuration: 0.2, animations: {
                 view.backgroundColor = UIColor(white: 0.0, alpha: 0.3)
             })
         } else {
-            UIView.animate(withDuration: 0.2, animations: { 
+            UIView.animate(withDuration: 0.2, animations: {
                 view.backgroundColor = UIColor(white: 0.0, alpha: 0.0)
                 }, completion: { (finished:Bool) in
                     view.removeFromSuperview()
@@ -568,7 +568,7 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
             }
             self.buttomImageView.frame = CGRect(x: (self.origin?.x)!, y: (self.collectionView?.frame.maxY)!-2, width: self.frame.size.width, height: CGFloat(kButtomImageViewHeight))
         } else {
-            UIView.animate(withDuration: 0.2, animations: { 
+            UIView.animate(withDuration: 0.2, animations: {
                 self.collectionView?.frame = CGRect(x: (self.origin?.x)!, y: self.frame.origin.y + self.frame.size.height, width: self.frame.size.width, height: 0)
                 self.buttomImageView.frame = CGRect(x: (self.origin?.x)!, y: ((self.collectionView?.frame)?.maxY)!-2, width: self.frame.size.width, height: CGFloat(kButtomImageViewHeight))
                 }, completion: { (finished) in
@@ -578,14 +578,14 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
         }
         complete()
         
-        }
+    }
     
     fileprivate func animateTableView(tableView: UITableView?, show: Bool, complete:()->()) -> Void {
         var isHaveItems = false
         if (dataSource != nil) {
             let num: Int = leftTableView.numberOfRows(inSection: 0)
             for i in 0..<num {
-
+                
                 if (dataSource?.menu!(dopMenu: self, numberOfItemsInRow: i, column: currentSelectedMenudIndex
                     ))!  > 0 && structDataSourceFlags.numberOfItemsInRow != 0  {
                     isHaveItems = true
@@ -611,7 +611,7 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
             let num: Int = leftTableView.numberOfRows(inSection: 0)
             let tableViewHeight = CGFloat(num * kTableViewCellHeight) > CGFloat(tableViewHieght + 1) ? tableViewHieght : CGFloat(num * kTableViewCellHeight + 1)
             
-            UIView.animate(withDuration: 0.2, animations: { 
+            UIView.animate(withDuration: 0.2, animations: {
                 if isHaveItems {
                     self.leftTableView.frame = CGRect(x: (self.origin?.x)!, y: self.frame.origin.y + self.frame.size.height, width: self.frame.size.width/2, height: tableViewHeight)
                     self.rightTableView.frame = CGRect(x: (self.origin?.x)! + self.frame.size.width/2, y: self.frame.origin.y + self.frame.size.height, width: self.frame.size.width/2, height: tableViewHeight)
@@ -622,7 +622,7 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
             })
             
         } else {
-            UIView.animate(withDuration: 0.2, animations: { 
+            UIView.animate(withDuration: 0.2, animations: {
                 if isHaveItems {
                     self.leftTableView.frame = CGRect(x: (self.origin?.x)!, y: self.frame.origin.y + self.frame.size.height, width: self.frame.size.width/2, height: 0)
                     self.rightTableView.frame = CGRect(x: (self.origin?.x)! + self.frame.size.width/2, y: self.frame.origin.y + self.frame.size.height, width: self.frame.size.width/2, height: 0)
@@ -638,7 +638,6 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
                     self.buttomImageView.removeFromSuperview()
             })
         }
-        
         complete()
     }
     
@@ -655,10 +654,10 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
     }
     
     fileprivate func animateIdicator(indicator: CAShapeLayer, background:UIView, tableview: UITableView, title: CATextLayer, forward: Bool, complete:()->()) -> Void {
-        self.animateIndicator(indicator: indicator, forward: forward) { 
-            self.animateTitle(title: title, show: forward, complete: { 
-                self.animateBackGroundView(view: background, show: forward, complete: { 
-                    self.animateTableView(tableView: tableview, show: forward, complete: { 
+        self.animateIndicator(indicator: indicator, forward: forward) {
+            self.animateTitle(title: title, show: forward, complete: {
+                self.animateBackGroundView(view: background, show: forward, complete: {
+                    self.animateTableView(tableView: tableview, show: forward, complete: {
                         
                     })
                 })
@@ -671,7 +670,7 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
         self.animateIndicator(indicator: indicator, forward: forward) {
             self.animateTitle(title: title, show: forward, complete: {
                 self.animateBackGroundView(view: background, show: forward, complete: {
-                    self.animateCollectionView(collectionView: collectionView, show: forward, complete: { 
+                    self.animateCollectionView(collectionView: collectionView, show: forward, complete: {
                         
                     })
                 })
@@ -881,11 +880,11 @@ class DOPDropDownMenu: UIView, UITableViewDataSource, UITableViewDelegate, UICol
             //有双列表 有item数据
             if isClickHaveItemValid {
                 title.string = self.dataSource?.menu(dopMenu: self, titleForRowAtIndexPath: DOPIndexPath.indexPathWith(col:currentSelectedMenudIndex, row: row))
-                self.animateTitle(title: title, show: true, complete: { 
+                self.animateTitle(title: title, show: true, complete: {
                     rightTableView.reloadData()
                 })
             } else {
-                    rightTableView.reloadData()
+                rightTableView.reloadData()
             }
             return false
         } else {
@@ -919,6 +918,7 @@ class HomeCell: UICollectionViewCell {
         super.init(frame: frame)
         
         imgView = UIImageView(frame: CGRect(x:0, y:0, width:(width-80)/3, height:70))
+        imgView?.contentMode = .scaleAspectFit
         self .addSubview(imgView!)
         titleLabel = UILabel(frame: CGRect(x:0, y:imgView!.frame.maxY+5, width:(width-80)/3, height:20))
         titleLabel?.numberOfLines = 0

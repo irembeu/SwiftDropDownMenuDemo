@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropDownMenuTestDemo/LGJDropDownMenu.swift"
-            timestampString = "499082516.282389"
+            timestampString = "499104469.786934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "880"
-            endingLineNumber = "880"
+            startingLineNumber = "879"
+            endingLineNumber = "879"
             landmarkName = "configMenuWithSelectRow(row:)"
             landmarkType = "7">
          </BreakpointContent>

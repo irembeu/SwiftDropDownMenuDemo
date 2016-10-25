@@ -25,10 +25,7 @@ class ViewController: UIViewController,DOPDropDownMenuDataSource, DOPDropDownMen
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "DOPDropDownMenu测试"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "重新加载", style: .plain, target: self, action: #selector(menuReloadData))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "选择特定", style: .plain, target: self, action: #selector(selectIndexPathAction))
-        
+        self.title = "DOPDropDownMenu"
         dopMenu = DOPDropDownMenu(origin: CGPoint(x: 0, y: 64), height: 44)
         dopMenu.dataSource = self
         dopMenu.delegate = self
@@ -127,19 +124,6 @@ class ViewController: UIViewController,DOPDropDownMenuDataSource, DOPDropDownMen
             print("点击了第\(indexPath.column)列 - 第\(indexPath.row)行")
         }
     }
-    
-    
-    //MARK:- 点击事件响应方法
-    
-    func menuReloadData() -> Void {
-        sifts = ["出发地", "目的地"]
-        dopMenu.reloadData()
-    }
-    
-    func selectIndexPathAction() -> Void {
-        dopMenu.selectIndexPath(indexPath: DOPIndexPath.indexPathWith(col: 0, row: 2, item: 2))
-    }
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
